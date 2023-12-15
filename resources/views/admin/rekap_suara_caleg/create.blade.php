@@ -10,39 +10,7 @@
                 @csrf
                 <div class="grid grid-cols-1 gap-6 mt-4">
 
-                    <div class="mb-4">
-                        <label for="id_kec" class="block text-gray-600 text-sm font-medium mb-2">PILIH KECAMATAN</label>
-                        <select name="id_kec" id="id_kec" class="form-select w-full">
-                        @foreach($kecamatans as $kecamatan)
-                         <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                            <option value="{{ $kecamatan->id_kec }}">{{ $kecamatan->nama_kec }}</option>
-                        @endforeach
-                        </select>
-                        @error('id_kec')
-                        <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                            <div class="px-4 py-2">
-                                <p class="text-gray-600 text-sm">{{ $message }}</p>
-                            </div>
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="id_kel" class="block text-gray-600 text-sm font-medium mb-2">PILIH KELURAHAN</label>
-                        <select name="id_kel" id="id_kel" class="form-select w-full">
-                        @foreach($kelurahans as $kelurahan)
-                         <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                            <option value="{{ $kelurahan->id_kel }}">{{ $kelurahan->nama_kel }}</option>
-                        @endforeach
-                        </select>
-                        @error('id_kel')
-                        <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                            <div class="px-4 py-2">
-                                <p class="text-gray-600 text-sm">{{ $message }}</p>
-                            </div>
-                        </div>
-                        @enderror
-                    </div>
+                   
 
                     <div class="mb-4">
                         <label for="id_caleg" class="block text-gray-600 text-sm font-medium mb-2">PILIH CALEG</label>
@@ -78,7 +46,6 @@
                         @enderror
                     </div>
 
-
                     <div>
                         <label class="text-gray-700" for="jumlah">JUMLAH SUARA</label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text" name="jumlah" value="{{ old('jumlah') }}" placeholder="jumlah">
@@ -90,7 +57,6 @@
                         </div>
                         @enderror
                     </div>
-
                     
                 </div>
                 <div class="flex justify-start mt-4">

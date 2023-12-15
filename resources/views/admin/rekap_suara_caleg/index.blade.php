@@ -25,12 +25,6 @@
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
 
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID KECAMATAN</span>
-                            </th>
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID KELURAHAN</span>
-                            </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">ID CALEG</span>
                             </th>
@@ -40,14 +34,15 @@
                             <th class="px-16 py-2">
                                 <span class="text-white">JUMLAH</span>
                             </th>
+                            <th class="px-16 py-2">
+                                <span class="text-white">AKSI</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200">
                     @forelse($rekap_suara_calegs as $rekap_suara_caleg)
                         <tr class="border bg-white">
 
-                            <td class="px-16 py-2">{{ $rekap_suara_caleg->kecamatans->nama_kec }}</td>
-                            <td class="px-16 py-2">{{ $rekap_suara_caleg->kelurahans->nama_kel }}</td>
                             <td class="px-16 py-2">{{ $rekap_suara_caleg->calegs->nama_caleg }}</td>
                             <td class="px-16 py-2">{{ $rekap_suara_caleg->tpsuaras->id_tps }}</td>
                             <td class="px-16 py-2">{{ $rekap_suara_caleg->jumlah }}</td>

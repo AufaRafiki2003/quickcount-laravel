@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     @enderror
-                </div>
+                </div> 
 
                 <div class="mb-4">
                     <label for="id_kec" class="block text-gray-600 text-sm font-medium mb-2">Pilih kecamatan</label>

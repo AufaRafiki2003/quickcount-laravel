@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('tpsuaras', function (Blueprint $table) {
             $table->id('id_tps');
             $table->unsignedBigInteger('id_kel');
-            $table->string('foto');
             $table->timestamps();
 
             $table->foreign('id_kel')->references('id_kel')->on('kelurahans');

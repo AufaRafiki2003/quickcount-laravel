@@ -21,16 +21,6 @@ class Kelurahan extends Model
         return $this->hasMany(Tpsuara::class, 'id_kel');
     }
 
-    public function rekap_suara_partais()
-    {
-        return $this->hasMany(Rekap_suara_partai::class, 'id_kel');
-    }
-
-    public function rekap_suara_calegs()
-    {
-        return $this->hasMany(Rekap_suara_caleg::class, 'id_kel');
-    }
-
     public function kecamatans()
     {
         return $this->belongsTo(Kecamatan::class, 'id_kec');

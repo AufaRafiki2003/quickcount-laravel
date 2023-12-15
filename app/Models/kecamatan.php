@@ -19,16 +19,6 @@ class Kecamatan extends Model
         return $this->hasMany(Kelurahan::class, 'id_kec');
     }
 
-    public function rekap_suara_partais()
-    {
-        return $this->hasMany(Rekap_suara_partai::class, 'id_kec');
-    }
-
-    public function rekap_suara_calegs()
-    {
-        return $this->hasMany(Rekap_suara_caleg::class, 'id_kec');
-    }
-
     public function dapils()
     {
         return $this->belongsTo(Dapil::class, 'id_dapil');

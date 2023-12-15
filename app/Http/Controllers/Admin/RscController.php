@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Caleg;
-use App\Models\Kecamatan;
-use App\Models\Kelurahan;
 use App\Models\Rekap_suara_caleg;
 use App\Models\Tpsuara;
 use Illuminate\Http\Request;
@@ -17,36 +15,30 @@ class RscController extends Controller
     $rekap_suara_calegs = Rekap_suara_caleg::latest()->when(request()->q, function($rekap_suara_calegs){
         $rekap_suara_calegs = $rekap_suara_calegs->where ("nama_caleg", "like", "%". request()->q ."%");
    })->paginate(10);
-   $rekap_suara_calegs = Rekap_suara_caleg::with(['kecamatans','kelurahans','tpsuaras','calegs'])->paginate(10);
-   return view("admin.rekap_suara_caleg.index", compact("rekap_suara_calegs"));
+   $rekap_suara_calegs = Rekap_suara_caleg::with(['tpsuaras','calegs'])->paginate(10);
+   return view("admin.rekap_suara_caleg.index", compact('rekap_suara_calegs'));
 }
 
 // Menampilkan form untuk membuat rekap_suara_caleg baru
 public function create()
 {
-    $kecamatans = Kecamatan::all();
-    $kelurahans= Kelurahan::all();
     $calegs = Caleg::all();
     $tpsuaras = Tpsuara::all();
 
-    return view('admin.rekap_suara_caleg.create', compact('kecamatans','kelurahans','calegs','tpsuaras'));
+    return view('admin.rekap_suara_caleg.create', compact('calegs','tpsuaras'));
 }
 
 // Menyimpan data rekap_suara_caleg baru
 public function store(Request $request)
 {
     $request->validate([
-        'id_kec' => 'required|exists:kecamatans,id_kec',
-        'id_kel' => 'required|exists:kelurahans,id_kel',
         'id_caleg' => 'required|exists:calegs,id_caleg',
-        'id_tps' => 'required|exists:tpsuaras,id_kec',
+        'id_tps' => 'required|exists:tpsuaras,id_tps',
         "jumlah"=> "required|:jumlah",
     ]);
 
 
     $rekap_suara_caleg = Rekap_suara_caleg::create([
-        'id_kec' => $request->id_kec,
-        'id_kel' => $request->id_kel,
         'id_caleg' => $request->id_caleg,
         'id_tps' => $request->id_tps,
         'jumlah' => $request->jumlah,
@@ -62,13 +54,11 @@ public function store(Request $request)
 // Menampilkan form untuk mengedit rekap_suara_caleg
 public function edit(Rekap_suara_caleg $rekap_suara_caleg)
 {
-    $rekap_suara_caleg = Rekap_suara_caleg::findOrFail($rekap_suara_caleg->id_kec);
-    $kecamatans = Kecamatan::all();
-    $kelurahans= Kelurahan::all();
+    $rekap_suara_caleg = Rekap_suara_caleg::findOrFail($rekap_suara_caleg->id_rsc);
     $calegs = Caleg::all();
     $tpsuaras = Tpsuara::all();
 
-    return view('admin.rekap_suara_caleg.edit', compact('rekap_suara_caleg', 'kecamatans'));
+    return view('admin.rekap_suara_caleg.edit', compact('rekap_suara_caleg', 'calegs', 'tpsuaras'));
 
 }
 
@@ -76,18 +66,18 @@ public function edit(Rekap_suara_caleg $rekap_suara_caleg)
 public function update(Request $request, Rekap_suara_caleg $rekap_suara_caleg)
 {
     $request->validate([
-        'id_kec' => 'required|exists:kecamatans,id_kec',
-        'id_kel' => 'required|:rekap_suara_calegs,id_kel',
-        'id_tps' => 'required|:tpsuaras,id_tps',
+        'id_caleg' => 'required|exists:calegs,id_caleg',
+        'id_tps' => 'required|exists:tpsuaras,id_tps',
+        'jumlah' => 'required|:rekap_suara_calegs,jumlah',
     ]);
 
-    $rekap_suara_caleg = Rekap_suara_caleg::findOrFail($rekap_suara_caleg->id_kec);
+    $rekap_suara_caleg = Rekap_suara_caleg::findOrFail($rekap_suara_caleg->id_rsc);
 
     // Update data rekap_suara_caleg
     $rekap_suara_caleg->update([
-        'id_kel' => $request->id_kel,
-        'id_kec' => $request->id_kec,
+        'id_caleg' => $request->id_caleg,
         'id_tps' => $request->id_tps,
+        'jumlah' => $request->jumlah,
     ]);
 
     // Redirect ke halaman index dengan pesan sukses
