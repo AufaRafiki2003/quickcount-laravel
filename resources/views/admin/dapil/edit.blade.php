@@ -2,7 +2,7 @@
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
     <div class="container mx-auto px-6 py-8">
-        <div class="p-6 bg-white rounded-md shadow-md"> <h2 class="text-lg text-gray-700 font-semibold capitalize">EDIT KATEGORI</h2> <hr class="mt-4">
+        <div class="p-6 bg-white rounded-md shadow-md"> <h2 class="text-lg text-gray-700 font-semibold capitalize">EDIT DAPIL</h2> <hr class="mt-4">
         <form action="{{ route('admin.dapil.update', $dapil->id_dapil) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT') 
             <div class="grid grid-cols-1 gap-6 mt-4"> 

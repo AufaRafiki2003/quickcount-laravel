@@ -3,7 +3,7 @@
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
     <div class="container mx-auto px-6 py-8">
         <div class="p-6 bg-white rounded-md shadow-md"> 
-            <h2 class="text-lg text-gray-700 font-semibold capitalize">EDIT KATEGORI</h2>
+            <h2 class="text-lg text-gray-700 font-semibold capitalize">EDIT KECAMATAN</h2>
          <hr class="mt-4">
         <form action="{{ route('admin.kecamatan.update', $kecamatan->id_kec) }}" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT') 
