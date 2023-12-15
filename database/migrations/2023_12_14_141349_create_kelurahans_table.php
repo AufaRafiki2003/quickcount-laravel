@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kecamatan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rekap_suara_calegs', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('id_caleg'); 
-            $table->integer('jumlah_suara'); 
+        Schema::create('kelurahans', function (Blueprint $table) {
+            $table->id('id_kel');
+            $table->string('nama_kel');
+            $table->unsignedBigInteger('id_kec');
             $table->timestamps();
+
+            $table->foreign('id_kec')->references('id_kec')->on('kecamatans');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rekap_suara_calegs');
+        Schema::dropIfExists('kelurahans');
     }
 };

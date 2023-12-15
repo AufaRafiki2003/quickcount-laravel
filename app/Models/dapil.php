@@ -5,15 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dapil extends Model
+class Dapil extends Model
 {
     use HasFactory;
-    protected $fillable=[ //[ adalah simbol array
-        'nama'
+    protected $primaryKey='id_dapil';
+    protected $fillable=[
+        'nama_dapil'
     ];
 
-    public function kecamatan()
+    public function kecamatans()
     {
-        return $this->hasMany(kecamatan::class);
+        return $this->hasMany(Kecamatan::class, 'id_dapil');
+    }
+
+    public function calegs()
+    {
+        return $this->hasMany(Caleg::class, 'id_dapil');
     }
 }
+
+

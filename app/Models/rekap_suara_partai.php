@@ -5,16 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rekap_suara_partai extends Model
+class Rekap_suara_partai extends Model
 {
     use HasFactory;
-    protected $fillable=[ //[ adalah simbol array
+
+    protected $primaryKey='id_rsp';
+
+    protected $fillable=[
+        'id_kec',
+        'id_kel',
         'id_partai',
-        'jumlah_suara'
+        'id_tps',
+        'jumlah',
     ];
 
-    public function partai()
+    public function kecamatans()
     {
-        return $this->hasOne(partai::class);
+        return $this->belongsTo(Kecamatan::class, 'id_kec');
+    }
+
+    public function kelurahans()
+    {
+        return $this->belongsTo(Kelurahan::class, 'id_kel');
+    }
+
+    public function partais()
+    {
+        return $this->belongsTo(Partai::class, 'id_partai');
+    }
+
+    public function tpsuaras()
+    {
+        return $this->belongsTo(Tpsuara::class, 'id_tps');
     }
 }

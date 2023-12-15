@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rekap_suara_partais', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('id_partai'); 
-            $table->integer('jumlah_suara'); 
+        Schema::create('kecamatans', function (Blueprint $table) {
+            $table->id('id_kec');
+            $table->string('nama_kec');
+            $table->unsignedBigInteger('id_dapil');
             $table->timestamps();
+
+            $table->foreign('id_dapil')->references('id_dapil')->on('dapils');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rekap_suara_partais');
+        Schema::dropIfExists('kecamatans');
     }
 };

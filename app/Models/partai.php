@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class partai extends Model
+class Partai extends Model
 {
     use HasFactory;
-    protected $fillable=[ //[ adalah simbol array
-        'nama',
+
+    protected $primaryKey='id_partai';
+
+    protected $fillable =[
+        'nama_partai',
         'no_urut_partai',
-        'id_kecamatan',
-        'foto'
+        'foto',
     ];
 
-    public function caleg()
+    public function rekap_suara_partais()
     {
-        return $this->hasMany(caleg::class);
-    }
-
-    public function rekap_suara_partai()
-    {
-        return $this->belongsTo(rekap_suara_partai::class);
+        return $this->hasMany(Rekap_suara_partai::class, 'id_partai');
     }
 }

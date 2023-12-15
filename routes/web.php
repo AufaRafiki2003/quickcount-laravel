@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DapilController;
+use App\Http\Controllers\Admin\KecamatanController;
+use App\Http\Controllers\Admin\KelurahanController;
+use App\Http\Controllers\Admin\TpsuaraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard.index');
 });
+
+Route::prefix('admin')->group(function () {
+        // untuk membuat route Barang
+        Route::resource('/dapil', DapilController::class, ['as'=>'admin']);
+
+        Route::resource('/kecamatan', KecamatanController::class, ['as'=>'admin']);
+
+        Route::resource('/kelurahan', KelurahanController::class, ['as'=>'admin']);
+
+        Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
+    });
+    

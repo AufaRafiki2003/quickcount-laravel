@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('partais', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->integer('no_urut_partai');
-            $table->unsignedInteger('id_kecamatan');
-            $table->string('foto'); 
+        Schema::create('dapils', function (Blueprint $table) {
+            $table->id('id_dapil');
+            $table->string('nama_dapil');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partais');
+        Schema::dropIfExists('dapils');
     }
 };
