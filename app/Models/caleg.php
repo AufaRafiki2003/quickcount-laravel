@@ -9,15 +9,21 @@ class Caleg extends Model
 {
     use HasFactory;
 
-    protected $primaryKey='id_caleg';
-    
-    protected $fillable=[
+    protected $primaryKey = 'id_caleg';
+
+    protected $fillable = [
         'id_partai',
         'nama_caleg',
         'no_urut_caleg',
         'id_dapil',
         'foto',
     ];
+
+    // Accessor untuk URL gambar
+    public function getImageAttribute($value)
+    {
+        return asset('/storage/gambar/' . $value);
+    }
 
     public function rekap_suara_calegs()
     {

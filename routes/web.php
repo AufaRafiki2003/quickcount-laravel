@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\KecamatanController;
 use App\Http\Controllers\Admin\KelurahanController;
 use App\Http\Controllers\Admin\RscController;
 use App\Http\Controllers\Admin\TpsuaraController;
+use App\Http\Controllers\Admin\CalegController;
+use App\Http\Controllers\Admin\PartaiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,5 @@ Route::prefix('admin')->group(function () {
         Route::resource('/kelurahan', KelurahanController::class, ['as'=>'admin']);
 
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
-
-        Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
     });
     
