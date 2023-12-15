@@ -33,5 +33,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('/kelurahan', KelurahanController::class, ['as'=>'admin']);
 
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
+
+        Route::resource('/partai', PartaiController::class, ['as'=>'admin']);
+
+        Route::resource('/caleg', CalegController::class, ['as'=>'admin']);
+
+        Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
+
     });
     
