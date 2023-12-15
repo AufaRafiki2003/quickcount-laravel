@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DapilController;
 use App\Http\Controllers\Admin\KecamatanController;
 use App\Http\Controllers\Admin\KelurahanController;
+use App\Http\Controllers\Admin\RekapsuarapartaiController;
 use App\Http\Controllers\Admin\RscController;
 use App\Http\Controllers\Admin\TpsuaraController;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
 
         Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
+
+        Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
     });
     
