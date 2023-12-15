@@ -33,7 +33,7 @@ class PartaiController extends Controller
         $partai = Partai::create([
             'nama_partai'=> $request->nama_partai,
             'no_urut_partai'=> $request->no_urut_partai,
-            'foto' => str_replace('public/', '', $fotoPath),
+            'foto' => str_replace('public/gambar', '', $fotoPath),
         ]);
 
         if($partai){
@@ -51,32 +51,34 @@ class PartaiController extends Controller
         $this->validate($request, [
             'nama_partai'=> 'required',
             'no_urut_partai'=> 'required',
-            'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',    
+            'foto' => 'nullable|image|mimes:jpeg,jpg,png|max:2048', // Ubah 'required' menjadi 'nullable' untuk mengizinkan foto kosong
         ]);
-
+    
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $fotoPath = $foto->store('public/gambar');
-            Storage::delete('public/' . $partai->foto);
-
+            Storage::delete('public/gambar' . $partai->foto);
+    
             $partai->update([
                 'nama_partai'=> $request->nama_partai,
                 'no_urut_partai'=> $request->no_urut_partai,
-                'foto' => str_replace('public/', '', $fotoPath),
+                'foto' => str_replace('public/gambar', '', $fotoPath), // Tidak perlu pemotongan 'public/gambar' di sini
             ]);
         } else {
             $partai->update([
                 'nama_partai'=> $request->nama_partai,
                 'no_urut_partai'=> $request->no_urut_partai,
+                // Hapus baris kode yang memotong substring 'public/gambar'
             ]);
         }
-
+    
         if($partai){
             return redirect()->route('admin.partai.index')->with(['success'=> 'Data berhasil diubah ke dalam tabel partai']);
         } else {
             return redirect()->route('admin.partai.index')->with(['error'=> 'Data gagal diubah ke dalam tabel partai']);
         }
     }
+    
 
     public function destroy($id){
         $partai = Partai::findOrFail($id);

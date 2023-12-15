@@ -45,9 +45,6 @@
                     @enderror
                 </div>
 
-                <div class="form-group"> <label class="font-weightbold">FOTO CALEG</label>
-                <input type="file" class="formcontrol" name="foto">
-
                 <div class="mb-4">
                     <label for="id_partai" class="block text-gray-600 text-sm font-medium mb-2">Pilih partai</label>
                     <select name="id_partai" id="id_partai" class="form-select w-full">
@@ -83,6 +80,9 @@
                     </div>
                     @enderror
                 </div>
+                
+                <div class="form-group"> <label class="font-weightbold">FOTO CALEG</label>
+                <input type="file" class="formcontrol" name="foto">
                 
             </div>
             <div class="flex justify-start mt-4">

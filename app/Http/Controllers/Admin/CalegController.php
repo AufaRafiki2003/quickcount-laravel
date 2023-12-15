@@ -67,9 +67,12 @@ class CalegController extends Controller
     }
 
 
-     // membuat tampilan ubah, method ini untuk menampilkan data nya
-     public function edit(Caleg $caleg){
-        return view('admin.caleg.edit', compact('caleg'));
+   
+    // Di dalam fungsi edit pada controller
+    public function edit(Caleg $caleg){
+        $partais = Partai::all(); // Inisialisasi data partai dari model Partai
+        $dapils = Dapil::all(); // Inisialisasi data dapil dari model Dapil
+        return view('admin.caleg.edit', compact('caleg', 'partais', 'dapils'));
     }
 
     //method untuk mengirimkan data yang di ubah ke dalam table calegs
