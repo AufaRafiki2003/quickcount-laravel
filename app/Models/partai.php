@@ -16,7 +16,10 @@ class Partai extends Model
         'no_urut_partai',
         'foto',
     ];
-
+    public function getImageAttribute($value)
+    {
+        return asset('/storage/gambar/' . $value);
+    }
     public function rekap_suara_partais()
     {
         return $this->hasMany(Rekap_suara_partai::class, 'id_partai');
