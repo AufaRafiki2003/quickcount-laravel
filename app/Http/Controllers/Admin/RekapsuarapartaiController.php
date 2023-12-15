@@ -32,7 +32,7 @@ class RekapsuarapartaiController extends Controller
     $request->validate([
         'id_partai' => 'required|:partais,id_partai',
         'id_tps' => 'required|exists:tpsuaras,id_tps',
-        'jumlah' => 'required|:rekap_suara_partais,jumlah',
+        'jumlah' => 'required|:rekap_suara_partais,jumlah'
         
     ]);
 
@@ -40,7 +40,7 @@ class RekapsuarapartaiController extends Controller
     $rekap_suara_partai = Rekap_suara_partai::create([
         'id_partai' => $request->id_partai,
         'id_tps' => $request->id_tps,
-        'jumlah' => $request->jumlah,
+        'jumlah' => $request->jumlah
     ]);
     if($rekap_suara_partai){
         return redirect()->route('admin.rekap_suara_partai.index')->with(['success'=>'data berhasil di tambah ke dalam table rekap_suara_partais']);
@@ -52,14 +52,15 @@ class RekapsuarapartaiController extends Controller
 
     // Menampilkan form untuk mengedit kecamatan
     public function edit(Rekap_suara_partai $rekap_suara_partai)
-    {
-        $rekap_suara_partai = Rekap_suara_partai::findOrFail($rekap_suara_partai->id_rsp);
-        $partais = Partai::all();
-        $tpsuaras = Tpsuara::all();
+{
+    // Menghapus baris yang memuat Rekap_suara_partai::findOrFail() karena sudah menggunakan Route Model Binding
+    $partais = Partai::all();
+    $tpsuaras = Tpsuara::all();
 
-        return view('admin.rekap_suara_partai.edit', compact('partais', 'tpsuaras'));
+    // Mengirimkan variabel $rekap_suara_partai ke view
+    return view('admin.rekap_suara_partai.edit', compact('rekap_suara_partai', 'partais', 'tpsuaras'));
+}
 
-    }
 
         // Menyimpan data kecamatan yang sudah diubah
         public function update(Request $request, Rekap_suara_partai $rekap_suara_partai)
@@ -67,7 +68,7 @@ class RekapsuarapartaiController extends Controller
             $request->validate([
                 'id_partai' => 'required|:partais,id_partai',
                 'id_tps' => 'required|exists:tpsuaras,id_tps',
-                'jumlah' => 'required|exists:rekap_suara_partais,jumlah',
+                'jumlah' => 'required|:rekap_suara_partais,jumlah'
             ]);
         
             $rekap_suara_partai = Rekap_suara_partai::findOrFail($rekap_suara_partai->id_rsp);
@@ -76,7 +77,7 @@ class RekapsuarapartaiController extends Controller
             $rekap_suara_partai->update([
                 'id_partai' => $request->id_partai,
                 'id_tps' => $request->id_tps,
-                'jumlah' => $request->jumlah,
+                'jumlah' => $request->jumlah
             ]);
     
             // Redirect ke halaman index dengan pesan sukses
