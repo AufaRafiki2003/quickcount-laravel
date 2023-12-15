@@ -30,13 +30,13 @@ public function create()
 public function store(Request $request)
 {
     $request->validate([
-        'id_kel' => 'required|exists:kelurahans,id_kel',
+        'id_kel' => 'required|exists:kelurahans,id_kel'
         
     ]);
 
 
     $tpsuara = Tpsuara::create([
-        'id_kel' => $request->id_kel,
+        'id_kel' => $request->id_kel
     ]);
     if($tpsuara){
         return redirect()->route('admin.tpsuara.index')->with(['success'=>'data berhasil di tambah ke dalam table kategori']);
@@ -49,10 +49,10 @@ public function store(Request $request)
 // Menampilkan form untuk mengedit tpsuara
 public function edit(Tpsuara $tpsuara)
 {
-    $tpsuara = Tpsuara::findOrFail($tpsuara->id_kel);
+    $tpsuaras = Tpsuara::findOrFail($tpsuara->id_kel);
     $kelurahans = Kelurahan::all();
 
-    return view('admin.tpsuara.edit', compact('tpsuara', 'kelurahans'));
+    return view('admin.tpsuara.edit', compact('tpsuaras', 'kelurahans'));
 
 }
 
