@@ -12,22 +12,13 @@ class Rekap_suara_partai extends Model
     protected $primaryKey='id_rsp';
 
     protected $fillable=[
-        'id_kec',
-        'id_kel',
+        
         'id_partai',
         'id_tps',
         'jumlah',
     ];
 
-    public function kecamatans()
-    {
-        return $this->belongsTo(Kecamatan::class, 'id_kec');
-    }
-
-    public function kelurahans()
-    {
-        return $this->belongsTo(Kelurahan::class, 'id_kel');
-    }
+  
 
     public function partais()
     {

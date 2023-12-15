@@ -12,14 +12,14 @@
                     
 
                     <div class="mb-4">
-                        <label for="id_kec" class="block text-gray-600 text-sm font-medium mb-2">PILIH KECAMATAN</label>
-                        <select name="id_kec" id="id_kec" class="form-select w-full">
-                        @foreach($kecamatans as $kecamatan)
+                        <label for="id_kel" class="block text-gray-600 text-sm font-medium mb-2">PILIH KELURAHAN</label>
+                        <select name="id_kel" id="id_kel" class="form-select w-full">
+                        @foreach($kelurahans as $kelurahan)
                          <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
-                            <option value="{{ $kecamatan->id_kec }}">{{ $kecamatan->nama_kec }}</option>
+                            <option value="{{ $kelurahan->id_kel }}">{{ $kelurahan->nama_kel }}</option>
                         @endforeach
                         </select>
-                        @error('id_kec')
+                        @error('id_kel')
                         <div class="w-full bg-red-200 shadow-sm rounded-md overflow-hidden mt-2">
                             <div class="px-4 py-2">
                                 <p class="text-gray-600 text-sm">{{ $message }}</p>

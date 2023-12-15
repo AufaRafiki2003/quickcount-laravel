@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DapilController;
 use App\Http\Controllers\Admin\KecamatanController;
 use App\Http\Controllers\Admin\KelurahanController;
+use App\Http\Controllers\Admin\RscController;
 use App\Http\Controllers\Admin\TpsuaraController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
-        // untuk membuat route Barang
+        // untuk membuat route caleg
         Route::resource('/dapil', DapilController::class, ['as'=>'admin']);
 
         Route::resource('/kecamatan', KecamatanController::class, ['as'=>'admin']);
@@ -30,5 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/kelurahan', KelurahanController::class, ['as'=>'admin']);
 
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
+
+        Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
     });
     

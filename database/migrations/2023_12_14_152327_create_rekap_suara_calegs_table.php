@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('rekap_suara_calegs', function (Blueprint $table) {
             $table->id('id_rsc');
-            $table->unsignedBigInteger('id_kec');
-            $table->unsignedBigInteger('id_kel');
-            $table->unsignedBigInteger('id_caleg');
             $table->unsignedBigInteger('id_tps');
+            $table->unsignedBigInteger('id_caleg');
             $table->integer('jumlah');
             $table->timestamps();
 
-            $table->foreign('id_kec')->references('id_kec')->on('kecamatans');
-            $table->foreign('id_kel')->references('id_kel')->on('kelurahans');
             $table->foreign('id_caleg')->references('id_caleg')->on('calegs');
             $table->foreign('id_tps')->references('id_tps')->on('tpsuaras');
         });

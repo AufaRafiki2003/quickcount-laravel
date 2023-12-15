@@ -13,16 +13,10 @@ return new class extends Migration
     {
         Schema::create('rekap_suara_partais', function (Blueprint $table) {
             $table->id('id_rsp');
-            $table->unsignedBigInteger('id_kec');
-            $table->unsignedBigInteger('id_kel');
             $table->unsignedBigInteger('id_partai');
             $table->unsignedBigInteger('id_tps');
             $table->integer('jumlah');
             $table->timestamps();
-
-            $table->foreign('id_kec')->references('id_kec')->on('kecamatans');
-            $table->foreign('id_kel')->references('id_kel')->on('kelurahans');
-            $table->foreign('id_partai')->references('id_partai')->on('partais');
             $table->foreign('id_tps')->references('id_tps')->on('tpsuaras');
         });
     }

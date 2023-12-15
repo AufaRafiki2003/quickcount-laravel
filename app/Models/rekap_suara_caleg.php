@@ -12,22 +12,12 @@ class Rekap_suara_caleg extends Model
     protected $primaryKey='id_rsc';
 
     protected $fillable=[
-        'id_kec',
-        'id_kel',
-        'id_caleg',
         'id_tps',
+        'id_caleg',
         'jumlah',
     ];
 
-    public function kecamatans()
-    {
-        return $this->belongsTo(Kecamatan::class, 'id_kec');
-    }
-
-    public function kelurahans()
-    {
-        return $this->belongsTo(Kelurahan::class, 'id_kel');
-    }
+   
 
     public function calegs()
     {
