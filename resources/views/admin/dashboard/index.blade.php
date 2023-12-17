@@ -13,7 +13,7 @@
                         </div>
                         <div class="mx-5">
                             <h4 class="text-2xl font-semibold text-gray-700">USER</h4>
-                            <div class="text-gray-500">Admin <br> Saksi</div>
+                            <div class="text-gray-500"><?php  echo Auth::user()->name; ?></div>
                         </div>
                     </div>
                 </div>
