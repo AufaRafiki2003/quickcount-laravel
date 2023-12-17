@@ -59,6 +59,9 @@ Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
     
     Route::resource('/laporan', LaporanController::class, ['as'=>'admin'])->middleware('userAkses:saksi');
 
+    Route::delete('/dapil/{id}', [DapilController::class, 'destroy'])->name('admin.dapil.destroy')->middleware('userAkses:admin');
+
+
 
     
 });
