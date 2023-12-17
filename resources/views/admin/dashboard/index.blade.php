@@ -1,48 +1,189 @@
-@extends('layouts.app', ['title' => 'Dashboard - Admin'])
-@section('content')
-<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
-    <div class="container mx-auto px-6 py-8">
-        <div class="mt-4">
-            <div class="flex flex-wrap -mx-6">
-                <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="mx-5">
-                            <h4 class="text-2xl font-semibold text-gray-700">USER</h4>
-                            <div class="text-gray-500">Admin <br> Saksi</div>
-                        </div>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Include Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <title>Dashboard</title>
+
+    <!-- Custom styles for the page -->
+    <style>
+          body {
+        /* Background dengan gradien dari biru ke ungu */
+        background-color: #f0f0f0; /* Ganti dengan warna latar belakang yang diinginkan */
+        /* Anda bisa mengubah warna atau arah gradien sesuai keinginan */
+        /* Untuk gradien yang berbeda, ubah nilai warna pada linear-gradient */
+    }
+
+    .header {
+        background-color: #007bff; /* Blue header background color */
+        color: #fff; /* White text color */
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+    }
+    </style>
+</head>
+    <div class="header bg-primary text-white text-center py-3">
+        Dashboard
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card-body">
+                    <label for="dapil">Dapil</label>
+                    <select class="form-select" id="dapil" onchange="changeDapil()">
+                        <option value="" class="bg-primary">Pilih Dapil</option>
+                        <!-- Add more options here -->
+                    </select>
                 </div>
-                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-green-600 bg-opacity-75">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
-                            </svg>
-                        </div>
-                        <div class="mx-5">
-                            <div class="text-gray-500">KATEGORI</div>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-body">
+                    <label for="kecamatan">Kecamatan</label>
+                    <select class="form-select" id="kecamatan" onchange="changeKecamatan()">
+                        <option value="" class="bg-primary">Pilih Kecamatan</option>
+                        <!-- Add more options here -->
+                    </select>
                 </div>
-                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                        </div>
-                        <div class="mx-5">
-                            <div class="text-gray-500">USER</div>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-body">
+                    <label for="kelurahan">Kelurahan</label>
+                    <select class="form-select" id="kelurahan" onchange="changeKelurahan()">
+                        <option value="" class="bg-primary">Pilih Kelurahan</option>
+                        <!-- Add more options here -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-body">
+                    <label for="tpsuara">TPS</label>
+                    <select class="form-select" id="tpsuara" onchange="changeTpsuara()">
+                        <option value="" class="bg-primary">Pilih TPS</option>
+                        <!-- Add more options here -->
+                    </select>
                 </div>
             </div>
         </div>
     </div>
-</main>
-@endsection
+
+    <!-- Informasi jumlah data dan persentase -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5>Jumlah Data Masuk</h5>
+                    <p id="jumlahData">0</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5>Persentase</h5>
+                    <p id="persentase">0%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabel rekap suara partai dan caleg -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Rekap Suara Partai</h2>
+                <table class="table table-striped" id="RekapSuaraPartai">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Partai</th>
+                            <th>Total Suara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Isi tabel rekap suara partai -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Rekap Suara Caleg</h2>
+                <table class="table table-striped" id="RekapSuaraCaleg">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Caleg</th>
+                            <th>Total Suara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Isi tabel rekap suara caleg -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Data rekap suara partai (contoh)
+        const dataSuaraPartai = [
+            { nomor: 1, nama: 'Partai A', suara: 500 },
+            { nomor: 2, nama: 'Partai B', suara: 350 },
+            // ...
+        ];
+        
+        // Data rekap suara caleg (contoh)
+        const dataSuaraCaleg = [
+            { nomor: 1, nama: 'Caleg 1', suara: 150 },
+            { nomor: 2, nama: 'Caleg 2', suara: 120 },
+            // ...
+        ];
+        
+        // Fungsi untuk mengisi tabel rekap suara partai
+        function isiTabelRekapSuaraPartai() {
+            const tabelRekapSuaraPartai = $('#rekapSuaraPartai');
+            tabelRekapPartai.empty();
+        
+            dataSuaraPartai.forEach((partai, index) => {
+                tabelRekapPartai.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${partai.nama}</td>
+                        <td>${partai.suara}</td>
+                    </tr>
+                `);
+            });
+        }
+        
+        // Fungsi untuk mengisi tabel rekap suara caleg
+        function isiTabelRekapSuaraCaleg() {
+            const tabelRekapCaleg = $('#rekapSuaraCaleg');
+            tabelRekapCaleg.empty();
+        
+            dataSuaraCaleg.forEach((caleg, index) => {
+                tabelRekapCaleg.append(`
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${caleg.nama}</td>
+                        <td>${caleg.suara}</td>
+                    </tr>
+                `);
+            });
+        }
+        
+        // Panggil fungsi untuk mengisi tabel
+        isiTabelRekapSuaraPartai();
+        isiTabelRekapSuaraCaleg();
+    </script>
+</body>
+</html>

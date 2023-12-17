@@ -25,6 +25,8 @@ Route::get('/', function () {
     return view('admin.dashboard.index');
 });
 
+
+
 Route::prefix('admin')->group(function () {
         // untuk membuat route caleg
         Route::resource('/dapil', DapilController::class, ['as'=>'admin']);

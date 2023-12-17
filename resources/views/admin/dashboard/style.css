@@ -1,0 +1,92 @@
+    /* Style untuk label */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Style untuk dropdown */
+    select {
+        width: 200px;
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+   /* Style untuk bagian rekap suara */
+#rekapSuaraPartai, #rekapSuaraCaleg {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+    /* Style untuk header rekap suara */
+    h2 {
+        margin-top: 30px;
+        font-size: 1.5em;
+    }
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #8a1a47;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table tbody + tbody {
+        border-top: 2px solid #dee2e6;
+    }
+
+    /* Gaya tambahan untuk rekap suara partai dan caleg */
+    #rekapSuaraPartai,
+    #rekapSuaraCaleg {
+        margin-top: 30px;
+    }
+
+    #rekapSuaraPartai h2,
+    #rekapSuaraCaleg h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    #rekapSuaraPartai table,
+    #rekapSuaraCaleg table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    #rekapSuaraPartai th,
+    #rekapSuaraCaleg th {
+        background-color: #007bff;
+        color: rgb(81, 15, 15);
+        padding: 12px 10px;
+        text-align: left;
+    }
+
+    #rekapSuaraPartai td,
+    #rekapSuaraCaleg td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    #rekapSuaraPartai tbody tr:nth-child(even),
+    #rekapSuaraCaleg tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #rekapSuaraPartai tbody tr:hover,
+    #rekapSuaraCaleg tbody tr:hover {
+        background-color: #ddd;
+    }
+   
