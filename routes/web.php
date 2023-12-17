@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\SesiController;
 use App\Http\Controllers\Admin\TpsuaraController;
 use App\Http\Controllers\Admin\CalegController;
 use App\Http\Controllers\Admin\PartaiController;
+use App\Http\Controllers\Admin\LaporanController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +34,7 @@ Route::get('/home', function(){
 
 });
 
+
 Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
     
     Route::get('/logout', [SesiController::class, 'logout']); //untuk log out
@@ -51,6 +54,10 @@ Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
     Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin'])->middleware('userAkses:saksi');
 
     Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin'])->middleware('userAkses:saksi');
+
+    Route::resource('/laporan', LaporanController::class, ['as'=>'admin'])->middleware('userAkses:admin');
+
+    
 });
 
 
