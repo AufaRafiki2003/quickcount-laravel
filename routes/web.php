@@ -33,8 +33,6 @@ Route::get('/home', function(){
     return view('admin.dashboard.index'); 
 
 });
-
-
 Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
     
     Route::get('/logout', [SesiController::class, 'logout']); //untuk log out
