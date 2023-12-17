@@ -22,14 +22,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['guest'])->group(function(){ // yang belum login
+    Route::get('/', [SesiController::class, 'index'])->name('login'); //untuk login
+    Route::post('/', [SesiController::class, 'login']);
+    
+});
+Route::get('/home', function(){
+    return view('admin.dashboard.index'); 
 
-Route::get('/', function () {
-    return view('admin.dashboard.index');
 });
 
-Route::prefix('admin')->group(function () {
-        // untuk membuat route caleg
-        Route::resource('/dapil', DapilController::class, ['as'=>'admin']);
+Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
+    
+    Route::get('/logout', [SesiController::class, 'logout']); //untuk log out
+
+    Route::resource('/dapil', DapilController::class, ['as'=>'admin'])->middleware('userAkses:admin');
 
     Route::resource('/kecamatan', KecamatanController::class, ['as'=>'admin'])->middleware('userAkses:admin');
 
