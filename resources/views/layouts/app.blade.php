@@ -1,162 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="shortcut icon" type="image/jpg" href="https://i.imgur.com/UyXqJLi.png" />
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ $title }}</title>
-        <!-- css -->
-        
-        @vite('resources/css/app.css')
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <!-- js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    </head>
-    <body>
-        <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-            <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
-            <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
-                <div class="flex items-center justify-center mt-4">
-                    <div class="flex items-center">
-                        <svg class="h-12 w-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M364.61 390.213C304.625 450.196 207.37 450.196 147.386 390.213C117.394 360.22 102.398 320.911 102.398 281.6C102.398 242.291 117.394 202.981 147.386 172.989C147.386 230.4 153.6 281.6 230.4 307.2C230.4 256 256 102.4 294.4 76.7999C320 128 334.618 142.997 364.608 172.989C394.601 202.981 409.597 242.291 409.597 281.6C409.597 320.911 394.601 360.22 364.61 390.213Z" fill="#4C51BF" stroke="#4C51BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z" fill="white" />
-                        </svg>
-                        <span class="text-white text-2xl mx-2 font-semibold">TABEL MENU</span>
-                    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
+        integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+
+    <header>
+        <!--Nav-->
+        <nav aria-label="menu nav" class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
+
+            <div class="flex flex-wrap items-center">
+                <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
+                    <a href="#" aria-label="Home">
+                        <span class="text-xl pl-2"><i class="em em-grinning"></i></span>
+                    </a>
                 </div>
-                <hr>
-                <nav class="mt-5">
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/laporan*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}"href="{{ route('admin.laporan.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                        </svg>
-                        <span class="mx-3">Dashboard</span>
-                    </a>
-                @if(Auth::user()->role == 'admin')
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/dapil*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.dapil.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">Dapil</span>
-                    </a>
-                
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/kecamatan*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.kecamatan.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">Kecamatan</span>
-                    </a>
 
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/kelurahan*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.kelurahan.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">Kelurahan</span>
-                    </a>
-
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/tps*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.tpsuara.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">TPS</span>
-                    </a>
-
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/partai*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.partai.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">PARTAI</span>
-                    </a>
-
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/caleg*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.caleg.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">CALEG</span>
-                    </a>
-                   @endif  <!-- sampai sini menu yang di tampilkan untuk admin -->
-
-                   @if(Auth::user()->role == 'saksi') <!--  di sini mulai menu yang di tampilkan untuk saksi -->
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/rekap_suara_caleg*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="{{ route('admin.rekap_suara_caleg.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">Rekap Suara Caleg</span>
-                    </a>
-
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/rekap_suara_partai*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" 
-                    href="{{ route('admin.rekap_suara_partai.index') }}">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                        </svg>
-                        <span class="mx-3">Rekap Suara Partai</span>
-                    </a>
-                    @endif
-
-                    <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/profile*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' : 'text-gray-500' }}" href="#">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span class="mx-3">Profil Saya</span>
-                    </a>
-                </nav>
-            </div>
-            <div class="flex-1 flex flex-col overflow-hidden">
-                <header class="flex justify-between items-center py-4 px-6 bg-white">
-                    <div class="flex items-center">
-                        <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
-                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <div class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2">
+                    <span class="relative w-full">
+                        <input aria-label="search" type="search" id="search" placeholder="Search"
+                            class="w-full bg-gray-900 text-white transition border border-transparent focus:outline-none focus:border-gray-400 rounded py-3 px-2 pl-10 appearance-none leading-normal">
+                        <div class="absolute search-icon" style="top: 1rem; left: .8rem;">
+                            <svg class="fill-current pointer-events-none text-white w-4 h-4"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path
+                                    d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
+                                </path>
                             </svg>
-                        </button>
-                    </div>
-                    <div class="flex items-center">
-                        <div x-data="{ dropdownOpen: false }"class="relative">
-                            <button @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
-                                <img class="h-full w-full object-cover" src="#">
-                            </button>
-                            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
-                            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-sm z-10">
-                                <div class="block px-4 py-2 text-sm text-gray-700">#</div>
-                                <hr>
-                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
-                                <form id="logout-form" action="#" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                         </div>
-                    </div>
-                </header>
-                @yield('content')
+                    </span>
+                </div>
+
+                <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
+                    <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                        <li class="flex-1 md:flex-none md:mr-3">
+                            <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
+                        </li>
+                        <li class="flex-1 md:flex-none md:mr-3">
+                            <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                href="#"><?php  echo Auth::user()->email; ?></a>
+                        </li>
+                        <li class="flex-1 md:flex-none md:mr-3">
+                            <div class="relative inline-block">
+                                <button onclick="toggleDD('myDropdown')" class="drop-button text-white py-2 px-2"> <span
+                                        class="pr-2"><i class="em em-robot_face"></i></span> Hi.. <?php  echo Auth::user()->name; ?><svg
+                                        class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg></button>
+                                <div id="myDropdown"
+                                    class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                    <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.."
+                                        id="myInput" onkeyup="filterDD('myDropdown','myInput')">
+                                    <a href="#"
+                                        class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
+                                            class="fa fa-user fa-fw"></i> Profile</a>
+                                    <a href="#"
+                                        class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
+                                            class="fa fa-cog fa-fw"></i> Settings</a>
+                                    <div class="border border-gray-800"></div>
+                                    <a href="/logout"
+                                        class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
+                                            class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <div class="flex flex-col md:flex-row">
+            <nav aria-label="alternative nav">
+                <div
+                    class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48 content-center">
+
+                    <div
+                        class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+                        <ul
+                            class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+                            <li class="mr-3 flex-1">
+                                <a href="#"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fas fa-tasks pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Task</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="/home"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-home pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dashboard</span>
+                                </a>
+                            </li>
+
+                           @if(Auth::user()->role == 'admin') <!-- untuk admin mulai dari sini -->
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.dapil.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dapil</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.kelurahan.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kelurahan</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.kecamatan.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kecamatan</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.tpsuara.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Tps</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.caleg.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Caleg</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.partai.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Partai</span>
+                                </a>
+                               @endif <!-- sampe sini  -->
+
+                               @if(Auth::user()->role == 'saksi') <!-- untuk saksi mulai dari sini -->
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.rekap_suara_partai.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara Partai</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.rekap_suara_caleg.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara Caleg</span>
+                                </a>
+                            </li>
+                            @endif <!-- sampe sini  -->
+
+                            <li class="mr-3 flex-1">
+                                <a href="#"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
+                                    <i class="fa fa-envelope pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Messages</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.laporan.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
+                                    <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Laporan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </nav>
+            @yield('content')
         </div>
+    </main>
 
-        <script>
-        @if(session()->has('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'BERHASIL!',
-            wtext: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 3000
-        })
 
-        @elseif(session()->has('error'))
-        Swal.fire({
-            icon: 'error',
-            text: 'GAGAL!',
-            title: '{{ session('error') }}',
-            showConfirmButton: false,
-            timer: 3000
-        })
-        @endif
-        </script>
-    </body>
+
+
+    <script>
+        /*Toggle dropdown list*/
+        function toggleDD(myDropMenu) {
+            document.getElementById(myDropMenu).classList.toggle("invisible");
+        }
+        /*Filter dropdown options*/
+        function filterDD(myDropMenu, myDropMenuSearch) {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById(myDropMenuSearch);
+            filter = input.value.toUpperCase();
+            div = document.getElementById(myDropMenu);
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
+                var dropdowns = document.getElementsByClassName("dropdownlist");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (!openDropdown.classList.contains('invisible')) {
+                        openDropdown.classList.add('invisible');
+                    }
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
 </html>

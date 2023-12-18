@@ -1,186 +1,306 @@
-@extends('layouts.app', ['title' => 'Laporan'])
+@extends('layouts.app', ['title' => 'LAPORAN - Admin'])
 @section('content')
-<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
-    <div class="container mx-auto px-6 py-8">
-        <div class="mt-4">
-            <div class="flex flex-wrap -mx-6">
-                <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75 mr-4">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-body">
-                                <label for="kecamatan">Kecamatan</label>
-                                <select class="form-select" id="kecamatan" onchange="changeKecamatan()">
-                                    <option value="" class="bg-primary">Pilih Kecamatan</option>
-                                    <!-- Add more options here -->
-                                </select>
+        
+    <section>
+            <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+
+                <div class="bg-gray-800 pt-3">
+                    <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+                        <h1 class="font-bold pl-2">Analytics</h1>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap">
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">Total Revenue</h2>
+                                   <p class="font-bold text-3xl">$3249 <span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
+                                </div>
                             </div>
                         </div>
+                        <!--/Metric Card-->
                     </div>
-                </div>
-                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-green-600 bg-opacity-75 mr-4">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-body">
-                                <label for="kelurahan">Kelurahan</label>
-                                <select class="form-select" id="kelurahan" onchange="changeKelurahan()">
-                                    <option value="" class="bg-primary">Pilih Kelurahan</option>
-                                    <!-- Add more options here -->
-                                </select>
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">Total Users</h2>
+                                    <p class="font-bold text-3xl">249 <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></p>
+                                </div>
                             </div>
                         </div>
+                        <!--/Metric Card-->
                     </div>
-                </div>
-                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                        <div class="p-3 rounded-full bg-pink-600 bg-opacity-75 mr-4">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-body">
-                                <label for="tpsuara">TPS</label>
-                                <select class="form-select" id="tpsuara" onchange="changeTpsuara()">
-                                    <option value="" class="bg-primary">Pilih TPS</option>
-                                    <!-- Add more options here -->
-                                </select>
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">New Users</h2>
+                                    <p class="font-bold text-3xl">2 <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
+                                </div>
                             </div>
                         </div>
+                        <!--/Metric Card-->
                     </div>
-                </div>  
-            </div>
-
-            <div class="flex justify-between mt-4">
-                <div class="w-1/2">
-                    <div class="card-body">
-                        <h5 class="font-bold mb-2">Jumlah Data Masuk</h5>
-                        <p id="jumlahData">0</p>
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">Server Uptime</h2>
+                                    <p class="font-bold text-3xl">152 days</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Metric Card-->
+                    </div>
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">To Do List</h2>
+                                    <p class="font-bold text-3xl">7 tasks</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Metric Card-->
+                    </div>
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Metric Card-->
+                        <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
+                                </div>
+                                <div class="flex-1 text-right md:text-center">
+                                    <h2 class="font-bold uppercase text-gray-600">Issues</h2>
+                                    <p class="font-bold text-3xl">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Metric Card-->
                     </div>
                 </div>
-                <div class="w-1/2">
-                    <div class="card-body">
-                        <h5 class="font-bold mb-2">Persentase</h5>
-                        <p id="persentase">0%</p>
+
+
+                <div class="flex flex-row flex-wrap flex-grow mt-2">
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                    <!--Graph Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                            <h class="font-bold uppercase text-gray-600">Graph</h>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-7"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April"],
+                                        "datasets": [{
+                                            "label": "Page Impressions",
+                                            "data": [10, 20, 30, 40],
+                                            "borderColor": "rgb(255, 99, 132)",
+                                            "backgroundColor": "rgba(255, 99, 132, 0.2)"
+                                        }, {
+                                            "label": "Adsense Clicks",
+                                            "data": [5, 15, 10, 30],
+                                            "type": "line",
+                                            "fill": false,
+                                            "borderColor": "rgb(54, 162, 235)"
+                                        }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
                     </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                    <!--Graph Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                            <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-0"), {
+                                    "type": "line",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Views",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "borderColor": "rgb(75, 192, 192)",
+                                            "lineTension": 0.1
+                                        }]
+                                    },
+                                    "options": {}
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                    <!--Graph Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                            <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                        </div>
+                        <div class="p-5">
+                            <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-1"), {
+                                    "type": "bar",
+                                    "data": {
+                                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                        "datasets": [{
+                                            "label": "Likes",
+                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "fill": false,
+                                            "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                                            "borderWidth": 1
+                                        }]
+                                    },
+                                    "options": {
+                                        "scales": {
+                                            "yAxes": [{
+                                                "ticks": {
+                                                    "beginAtZero": true
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                    <!--Graph Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                            <h5 class="font-bold uppercase text-gray-600">Graph</h5>
+                        </div>
+                        <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <script>
+                                new Chart(document.getElementById("chartjs-4"), {
+                                    "type": "doughnut",
+                                    "data": {
+                                        "labels": ["P1", "P2", "P3"],
+                                        "datasets": [{
+                                            "label": "Issues",
+                                            "data": [300, 50, 100],
+                                            "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                        }]
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <!--/Graph Card-->
+                </div>
+
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                        <!--Table Card-->
+                        <div class="bg-white border-transparent rounded-lg shadow-xl">
+                            <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                <h2 class="font-bold uppercase text-gray-600">Graph</h2>
+                            </div>
+                            <div class="p-5">
+                                <table class="w-full p-5 text-gray-700">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-left text-blue-900">Name</th>
+                                        <th class="text-left text-blue-900">Side</th>
+                                        <th class="text-left text-blue-900">Role</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>Obi Wan Kenobi</td>
+                                        <td>Light</td>
+                                        <td>Jedi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Greedo</td>
+                                        <td>South</td>
+                                        <td>Scumbag</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Darth Vader</td>
+                                        <td>Dark</td>
+                                        <td>Sith</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <p class="py-2"><a href="#">See More issues...</a></p>
+
+                            </div>
+                        </div>
+                        <!--/table Card-->
+                    </div>
+
+                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+                    <!--Advert Card-->
+                    <div class="bg-white border-transparent rounded-lg shadow-xl">
+                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                            <h2 class="font-bold uppercase text-gray-600">Advert</h2>
+                        </div>
+                        <div class="p-5 text-center">
+
+
+                            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7D52JJ&placement=wwwtailwindtoolboxcom" id="_carbonads_js"></script>
+
+
+                        </div>
+                    </div>
+                    <!--/Advert Card-->
+                </div>
+
+
                 </div>
             </div>
-
-            <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="font-bold mb-4">Rekap Suara Partai</h1>
-            <div class="table-responsive">
-                <table class="min-w-full table-auto">
-                    <thead class="justify-between">
-                        <tr class="bg-gray-600 w-full">
-
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">No.</span>
-                            </th>
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">Nama Partai</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-white">Total Suara</span>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <h1 class="font-bold mb-4">Rekap Suara Caleg</h1>
-            <div class="table-responsive">
-            <table class="min-w-full table-auto">
-                    <thead class="justify-between">
-                        <tr class="bg-gray-600 w-full">
-
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">No.</span>
-                            </th>
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">Nama Caleg</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-white">Total Suara</span>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-        </div>
-    </div>
-</main>
-@endsection
-
-    </div>
-    <script>
-        // Data rekap suara partai (contoh)
-        const dataSuaraPartai = [
-            { nomor: 1, nama: 'Partai A', suara: 500 },
-            { nomor: 2, nama: 'Partai B', suara: 350 },
-            // ...
-        ];
-        
-        // Data rekap suara caleg (contoh)
-        const dataSuaraCaleg = [
-            { nomor: 1, nama: 'Caleg 1', suara: 150 },
-            { nomor: 2, nama: 'Caleg 2', suara: 120 },
-            // ...
-        ];
-        
-        // Fungsi untuk mengisi tabel rekap suara partai
-        function isiTabelRekapSuaraPartai() {
-            const tabelRekapSuaraPartai = $('#rekapSuaraPartai');
-            tabelRekapPartai.empty();
-        
-            dataSuaraPartai.forEach((partai, index) => {
-                tabelRekapPartai.append(`
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${partai.nama}</td>
-                        <td>${partai.suara}</td>
-                    </tr>
-                `);
-            });
-        }
-        
-        // Fungsi untuk mengisi tabel rekap suara caleg
-        function isiTabelRekapSuaraCaleg() {
-            const tabelRekapCaleg = $('#rekapSuaraCaleg');
-            tabelRekapCaleg.empty();
-        
-            dataSuaraCaleg.forEach((caleg, index) => {
-                tabelRekapCaleg.append(`
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${caleg.nama}</td>
-                        <td>${caleg.suara}</td>
-                    </tr>
-                `);
-            });
-        }
-        
-        // Panggil fungsi untuk mengisi tabel
-        isiTabelRekapSuaraPartai();
-        isiTabelRekapSuaraCaleg();
-    </script>
-</body>
-</html>
+        </section>
+        @endsection

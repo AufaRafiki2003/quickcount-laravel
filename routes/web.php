@@ -53,11 +53,7 @@ Route::middleware(['auth'])->group(function(){ // untuk bagian yang telah login
 
     Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin'])->middleware('userAkses:saksi');
 
-    Route::resource('/laporan', LaporanController::class, ['as'=>'admin'])->middleware('userAkses:admin');
-    
-    Route::resource('/laporan', LaporanController::class, ['as'=>'admin'])->middleware('userAkses:saksi');
-
-
+    Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
     
 });
 
