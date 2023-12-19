@@ -125,19 +125,20 @@
                                 </a>
                             </li>
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.kelurahan.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kelurahan</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.kecamatan.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kecamatan</span>
                                 </a>
                             </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.kelurahan.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kelurahan</span>
+                                </a>
+                            </li>
+                           
                             <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.tpsuara.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
@@ -146,17 +147,17 @@
                                 </a>
                             </li>
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.caleg.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Caleg</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.partai.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Partai</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('admin.caleg.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Caleg</span>
                                 </a>
                                @endif <!-- sampe sini  -->
 
