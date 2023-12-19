@@ -47,9 +47,9 @@
                             </td>
                         </tr>
                     @empty
-                        <div class="bg-red-500 text-white text-center p-3 rounded-sm shadow-md">
-                            Data Belum Tersedia!
-                        </div>
+                    <tr>
+                        <td colspan="4" class="text-center py-4">Data Belum Tersedia!</td>
+                    </tr>
                     @endforelse
                     </tbody>
                 </table>
