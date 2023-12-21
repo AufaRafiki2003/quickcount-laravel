@@ -17,7 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_tps');
             $table->integer('jumlah');
             $table->timestamps();
+
             $table->foreign('id_tps')->references('id_tps')->on('tpsuaras');
+            $table->foreign('id_partai')->references('id_partai')->on('partais');
         });
     }
 

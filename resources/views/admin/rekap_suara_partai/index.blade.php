@@ -17,7 +17,7 @@
                     <input class="form-input w-full rounded-lg pl-10 pr-4" type="text" name="q" value="{{ request()->query('q') }}" placeholder="Search">
                 </form>
             </div>
-            
+           
         </div>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow-sm rounded-lg overflow-hidden">
@@ -47,8 +47,8 @@
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->
                             <td class="px-10 py-2 text-center">
                                 <a href="{{ route('admin.rekap_suara_partai.edit', $rekap_suara_partai->id_rsp) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
-
-                                <button onClick="destroy(this.id)" id="{{ $rekap_suara_partai->id_rsp }}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
+                                @csrf
+                                <button onClick="destroy(this.id)" id="{{ $rekap_suara_partai->id_rsp }}"  class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
                             </td>
                         </tr>
                     @empty

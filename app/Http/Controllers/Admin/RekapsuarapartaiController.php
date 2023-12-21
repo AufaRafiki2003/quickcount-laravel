@@ -87,5 +87,17 @@ class RekapsuarapartaiController extends Controller
                 return redirect()->route('admin.rekap_suara_partai.index')->with(['error'=>'data Gagal di tambah ke dalam table kategori']);
             }
         }
+        public function destroy($id){
+            $rekap_suara_partai = Rekap_suara_partai::findOrFail($id);
+            $rekap_suara_partai->delete();
+    
+            //kondisi dalam hapus
+            if($rekap_suara_partai){
+                return response()->json(['status'=> 'success']);
+            }else{
+                return response()->json(['status'=> 'error']);
+            }
+    
+        }
 
 }

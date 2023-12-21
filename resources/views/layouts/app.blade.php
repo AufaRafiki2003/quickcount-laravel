@@ -9,6 +9,7 @@
     <meta name="author" content="name">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
@@ -54,17 +55,20 @@
                         </li>
                         <li class="flex-1 md:flex-none md:mr-3">
                             <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                                href="#"><?php  echo Auth::user()->email; ?></a>
+                                href="#">
+                                <?php  echo Auth::user()->email; ?>
+                            </a>
                         </li>
                         <li class="flex-1 md:flex-none md:mr-3">
                             <div class="relative inline-block">
                                 <button onclick="toggleDD('myDropdown')" class="drop-button text-white py-2 px-2"> <span
-                                        class="pr-2"><i class="em em-robot_face"></i></span> Hi.. <?php  echo Auth::user()->name; ?><svg
-                                        class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
+                                        class="pr-2"><i class="em em-robot_face"></i></span> Hi..
+                                    <?php  echo Auth::user()->name; ?><svg class="h-3 fill-current inline"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                         <path
                                             d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg></button>
+                                    </svg>
+                                </button>
                                 <div id="myDropdown"
                                     class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
                                     <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.."
@@ -116,10 +120,10 @@
                                 </a>
                             </li>
 
-                           @if(Auth::user()->role == 'admin') <!-- untuk admin mulai dari sini -->
+                            @if(Auth::user()->role == 'admin') <!-- untuk admin mulai dari sini -->
                             <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.dapil.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800  hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dapil</span>
                                 </a>
@@ -138,7 +142,7 @@
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kelurahan</span>
                                 </a>
                             </li>
-                           
+
                             <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.tpsuara.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
@@ -159,22 +163,24 @@
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Caleg</span>
                                 </a>
-                               @endif <!-- sampe sini  -->
+                                @endif <!-- sampe sini  -->
 
-                               @if(Auth::user()->role == 'saksi') <!-- untuk saksi mulai dari sini -->
+                                @if(Auth::user()->role == 'saksi') <!-- untuk saksi mulai dari sini -->
                             </li>
                             <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.rekap_suara_partai.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara Partai</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara
+                                        Partai</span>
                                 </a>
                             </li>
                             <li class="mr-3 flex-1">
                                 <a href="{{ route('admin.rekap_suara_caleg.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara Caleg</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara
+                                        Caleg</span>
                                 </a>
                             </li>
                             @endif <!-- sampe sini  -->
@@ -191,6 +197,7 @@
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600">
                                     <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span
                                         class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Laporan</span>
+                                   
                                 </a>
                             </li>
                         </ul>
@@ -207,6 +214,26 @@
 
 
     <script>
+
+        @if (session() -> has('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'BERHASIL!',
+                wtext: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            })
+
+        @elseif(session() -> has('error'))
+        Swal.fire({
+            icon: 'error',
+            text: 'GAGAL!',
+            title: '{{ session('error') }}',
+            showConfirmButton: false,
+            timer: 3000
+        })
+        @endif
+
         /*Toggle dropdown list*/
         function toggleDD(myDropMenu) {
             document.getElementById(myDropMenu).classList.toggle("invisible");
