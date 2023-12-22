@@ -24,4 +24,9 @@ class Partai extends Model
     {
         return $this->hasMany(Rekap_suara_partai::class, 'id_partai');
     }
+
+    public function calegs()
+    {
+        return $this->hasMany(Caleg::class, 'id_partai');
+    }
 }

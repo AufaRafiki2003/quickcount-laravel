@@ -28,7 +28,7 @@
                                 <span class="text-white">Partai</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">Tempat Pemugutan Suara</span>
+                                <span class="text-white">NOMOR TPS</span>
                             </th>
                             <th class="px-16 py-2 text-left">
                                 <span class="text-white">Jumlah</span>
@@ -41,7 +41,7 @@
                     <tbody class="bg-gray-200">
                     @forelse($rekap_suara_partais as $rekap_suara_partai)
                             <td class="px-16 py-2">{{ $rekap_suara_partai->partais->nama_partai }}</td>
-                            <td class="px-16 py-2">{{ $rekap_suara_partai->tpsuaras->id_tps }}</td>
+                            <td class="px-16 py-2">{{ $rekap_suara_partai->tpsuaras->no_tps }}</td>
                             <td class="px-16 py-2">{{ $rekap_suara_partai->jumlah }}</td>
 
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->

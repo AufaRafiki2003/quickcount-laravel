@@ -29,7 +29,10 @@ class Caleg extends Model
     {
         return $this->hasMany(Rekap_suara_caleg::class, 'id_caleg');
     }
-
+    public function partais()
+    {
+        return $this->belongsTo(Partai::class, 'id_partai');
+    }
     public function dapils()
     {
         return $this->belongsTo(Dapil::class, 'id_dapil');

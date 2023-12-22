@@ -14,6 +14,7 @@ class Rekap_suara_partai extends Model
     protected $fillable=[
         
         'id_partai',
+        'id_kel',
         'id_tps',
         'jumlah',
     ];

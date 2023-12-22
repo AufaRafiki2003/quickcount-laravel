@@ -12,6 +12,7 @@ class Tpsuara extends Model
     protected $primaryKey='id_tps';
 
     protected $fillable=[
+        'no_tps',
         'id_kel',
     ];
 

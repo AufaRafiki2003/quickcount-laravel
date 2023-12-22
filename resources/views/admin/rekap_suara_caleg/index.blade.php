@@ -29,7 +29,10 @@
                                 <span class="text-white">ID CALEG</span>
                             </th>
                             <th class="px-16 py-2">
-                                <span class="text-white">ID TPS</span>
+                                <span class="text-white">PARTAI</span>
+                            </th>
+                            <th class="px-16 py-2">
+                                <span class="text-white">NOMOR TPS</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">JUMLAH</span>
@@ -44,7 +47,8 @@
                         <tr class="border bg-white">
 
                             <td class="px-16 py-2">{{ $rekap_suara_caleg->calegs->nama_caleg }}</td>
-                            <td class="px-16 py-2">{{ $rekap_suara_caleg->tpsuaras->id_tps }}</td>
+                            <td class="px-16 py-2">{{ $rekap_suara_caleg->calegs->partais->nama_partai }}</td>
+                            <td class="px-16 py-2">{{ $rekap_suara_caleg->tpsuaras->no_tps }}</td>
                             <td class="px-16 py-2">{{ $rekap_suara_caleg->jumlah }}</td>
 
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->

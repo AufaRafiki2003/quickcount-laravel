@@ -29,10 +29,12 @@ class TpsuaraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'no_tps' => 'required|:tpsuaras,no_tps',
             'id_kel' => 'required|exists:kelurahans,id_kel'
         ]);
 
         $tpsuara = Tpsuara::create([
+            'no_tps'=> $request->no_tps,
             'id_kel' => $request->id_kel
         ]);
 
@@ -52,10 +54,12 @@ class TpsuaraController extends Controller
     public function update(Request $request, Tpsuara $tpsuara)
     {
         $request->validate([
+            'no_tps' => 'required|:tpsuaras,no_tps',
             'id_kel' => 'required|exists:kelurahans,id_kel',
         ]);
 
         $updated = $tpsuara->update([
+            'no_tps'=> $request->no_tps,
             'id_kel' => $request->id_kel,
         ]);
 

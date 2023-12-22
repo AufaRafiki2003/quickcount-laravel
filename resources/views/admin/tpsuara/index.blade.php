@@ -26,7 +26,10 @@
                         <tr class="bg-gray-600 w-full">
 
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID KELURAHAN</span>
+                                <span class="text-white">NO TPS</span>
+                            </th>
+                            <th class="px-16 py-2 text-left">
+                                <span class="text-white">KELURAHAN</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">AKSI</span>
@@ -36,7 +39,7 @@
                     <tbody class="bg-gray-200">
                     @forelse($tpsuaras as $tpsuara)
                         <tr class="border bg-white">
-
+                            <td class="px-16 py-2">{{ $tpsuara->no_tps }}</td>
                             <td class="px-16 py-2">{{ $tpsuara->kelurahans->nama_kel }}</td>
 
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->

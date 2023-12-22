@@ -24,7 +24,7 @@
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID PARTAI</span>
+                                <span class="text-white">NAMA PARTAI</span>
                             </th>
                             <th class="px-16 py-2 text-left">
                                 <span class="text-white">NAMA CALEG</span>
@@ -33,7 +33,7 @@
                                 <span class="text-white">NOMOR URUT CALEG</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID DAPIL</span>
+                                <span class="text-white">DAPIL</span>
                             </th>
                             <th class="px-16 py-2 text-left">
                                 <span class="text-white">FOTO</span>
@@ -49,7 +49,7 @@
                                 <td class="px-16 py-2">{{ $caleg->id_partai }}</td>
                                 <td class="px-16 py-2">{{ $caleg->nama_caleg }}</td>
                                 <td class="px-16 py-2">{{ $caleg->no_urut_caleg }}</td>
-                                <td class="px-16 py-2">{{ $caleg->id_dapil }}</td>
+                                <td class="px-16 py-2">{{ $caleg->dapils->nama_dapil }}</td>
                                 <td class="px-16 py-2">
                                     @if($caleg->foto)
                                         <img src="{{ asset('storage/gambar/' . $caleg->foto) }}" alt="Foto Caleg" class="h-12 w-12 object-cover rounded-full">
