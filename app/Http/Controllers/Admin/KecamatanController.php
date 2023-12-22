@@ -14,7 +14,6 @@ class KecamatanController extends Controller
         $kecamatans = Kecamatan::latest()->when(request()->q, function($kecamatans){
             $kecamatans = $kecamatans->where ("nama_kec", "like", "%". request()->q ."%");
        })->paginate(10);
-       $kecamatans = Kecamatan::with(['dapils'])->paginate(10);
        return view("admin.kecamatan.index", compact("kecamatans"));
     }
 
