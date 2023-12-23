@@ -29,7 +29,7 @@
                                 <span class="text-white">NAMA KELURAHAN</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID KECAMATAN</span>
+                                <span class="text-white">KECAMATAN</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">AKSI</span>

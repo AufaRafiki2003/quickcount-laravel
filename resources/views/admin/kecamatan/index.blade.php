@@ -29,7 +29,7 @@
                                 <span class="text-white">NAMA KECAMATAN</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">ID DAPIL</span>
+                                <span class="text-white">DAPIL</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">AKSI</span>
