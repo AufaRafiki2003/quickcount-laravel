@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('userAkses:saksi')->prefix('saksi')->group(function () {
         Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
         Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
+        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
     });
 
     // Home route for all authenticated users
