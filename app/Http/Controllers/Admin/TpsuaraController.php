@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Desa;
 use App\Models\Kelurahan;
 use App\Models\Tpsuara;
 use Illuminate\Http\Request;
@@ -11,9 +12,9 @@ class TpsuaraController extends Controller
 {
     public function index()
     {
-        $tpsuaras = Tpsuara::with('kelurahans')->latest()->when(request()->q, function ($query) {
-            $query->whereHas('kelurahans', function ($subQuery) {
-                $subQuery->where('nama_kel', 'like', '%' . request()->q . '%');
+        $tpsuaras = Tpsuara::with('desas')->latest()->when(request()->q, function ($query) {
+            $query->whereHas('desas', function ($subQuery) {
+                $subQuery->where('nama_desa', 'like', '%' . request()->q . '%');
             });
         })->paginate(10);
 
@@ -22,20 +23,20 @@ class TpsuaraController extends Controller
 
     public function create()
     {
-        $kelurahans = Kelurahan::all();
-        return view('admin.tpsuara.create', compact('kelurahans'));
+        $desas = Desa::all();
+        return view('admin.tpsuara.create', compact('desas'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'no_tps' => 'required|:tpsuaras,no_tps',
-            'id_kel' => 'required|exists:kelurahans,id_kel'
+            'id_desa' => 'required|exists:desas,id_desa'
         ]);
 
         $tpsuara = Tpsuara::create([
             'no_tps'=> $request->no_tps,
-            'id_kel' => $request->id_kel
+            'id_desa' => $request->id_desa
         ]);
 
         if ($tpsuara) {
@@ -47,20 +48,20 @@ class TpsuaraController extends Controller
 
     public function edit(Tpsuara $tpsuara)
     {
-        $kelurahans = Kelurahan::all();
-        return view('admin.tpsuara.edit', compact('tpsuara', 'kelurahans'));
+        $desas = Desa::all();
+        return view('admin.tpsuara.edit', compact('tpsuara', 'desas'));
     }
 
     public function update(Request $request, Tpsuara $tpsuara)
     {
         $request->validate([
             'no_tps' => 'required|:tpsuaras,no_tps',
-            'id_kel' => 'required|exists:kelurahans,id_kel',
+            'id_desa' => 'required|exists:desas,id_desa',
         ]);
 
         $updated = $tpsuara->update([
             'no_tps'=> $request->no_tps,
-            'id_kel' => $request->id_kel,
+            'id_desa' => $request->id_desa,
         ]);
 
         if ($updated) {

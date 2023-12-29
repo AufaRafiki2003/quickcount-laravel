@@ -13,21 +13,17 @@ class Tpsuara extends Model
 
     protected $fillable=[
         'no_tps',
-        'id_kel',
+        'id_desa',
     ];
 
-    public function rekap_suara_calegs()
+    public function rekap_suaras()
     {
-        return $this->hasMany(Rekap_suara_caleg::class, 'id_tps');
+        return $this->hasMany(Rekap_suara::class, 'id_tps');
     }
 
-    public function rekap_suara_partais()
+    public function desas()
     {
-        return $this->hasMany(Rekap_suara_partai::class, 'id_tps');
+        return $this->belongsTo(Desa::class, 'id_desa');
     }
 
-    public function kelurahans()
-    {
-        return $this->belongsTo(Kelurahan::class, 'id_kel');
-    }
 }

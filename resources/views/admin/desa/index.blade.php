@@ -1,11 +1,11 @@
-@extends('layouts.app', ['title' => 'tpsuara - Admin'])
+@extends('layouts.app', ['title' => 'desa - Admin'])
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
     <div class="container mx-auto px-6 py-8">
         <div class="flex items-center">
             <button class="text-white focus:outline-none bg-gray-600 px-4 py-2 shadow-sm rounded-md">
-                <a href="{{ route('admin.tpsuara.create') }}">TAMBAH</a>
+                <a href="{{ route('admin.desa.create') }}">TAMBAH</a>
             </button>
             <div class="relative mx-4">
                 <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -13,7 +13,7 @@
                         <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </span>
-                <form action="{{ route('admin.tpsuara.index') }}" method="GET">
+                <form action="{{ route('admin.desa.index') }}" method="GET">
                     <input class="form-input w-full rounded-lg pl-10 pr-4" type="text" name="q" value="{{ request()->query('q') }}" placeholder="Search">
                 </form>
             </div>
@@ -26,10 +26,10 @@
                         <tr class="bg-gray-600 w-full">
 
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">NO TPS</span>
+                                <span class="text-white">NAMA desa</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">KELURAHAN</span>
+                                <span class="text-white">KECAMATAN</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">AKSI</span>
@@ -37,28 +37,29 @@
                         </tr>
                     </thead>
                     <tbody class="bg-gray-200">
-                    @forelse($tpsuaras as $tpsuara)
+                    @forelse($desas as $desa)
                         <tr class="border bg-white">
-                            <td class="px-16 py-2">{{ $tpsuara->no_tps }}</td>
-                            <td class="px-16 py-2">{{ $tpsuara->desas->nama_desa }}</td>
+
+                            <td class="px-16 py-2">{{ $desa->nama_desa }}</td>
+                            <td class="px-16 py-2">{{ $desa->kecamatans->nama_kec }}</td>
 
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->
                             <td class="px-10 py-2 text-center">
-                                <a href="{{ route('admin.tpsuara.edit', $tpsuara->id_tps) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
+                                <a href="{{ route('admin.desa.edit', $desa->id_desa) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
 
-                                <button onClick="destroy(this.id)" id="{{ $tpsuara->id_tps }}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
+                                <button onClick="destroy(this.id)" id="{{ $desa->id_desa }}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center py-4">Data Belum Tersedia!</td>
+                             <td colspan="4" class="text-center py-4">Data Belum Tersedia!</td>
                         </tr>
                     @endforelse
                     </tbody>
                 </table>
-                @if ($tpsuaras->hasPages())
+                @if ($desas->hasPages())
                 <div class="bg-white p-3">
-                    {{ $tpsuaras->links('vendor.pagination.tailwind') }}
+                    {{ $desas->links('vendor.pagination.tailwind') }}
                 </div>
                 @endif
             </div>
@@ -82,7 +83,7 @@
             if (result.isConfirmed) {
                 //ajax delete
                 jQuery.ajax({
-                    url: `/admin/tpsuara/${id}`,
+                    url: `/admin/desa/${id}`,
                     data: {
                         "id": id,
                         "_token": token

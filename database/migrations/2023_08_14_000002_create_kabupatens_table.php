@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tpsuaras', function (Blueprint $table) {
-            $table->id('id_tps');
-            $table->string('no_tps');
-            $table->unsignedBigInteger('id_desa');
+        Schema::create('kabupatens', function (Blueprint $table) {
+            $table->id('id_kab');
+            $table->string('nama_kab');
             $table->timestamps();
-
-            $table->foreign('id_desa')->references('id_desa')->on('desas');
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('tpsuaras');
+        Schema::dropIfExists('kabupatens');
     }
 };

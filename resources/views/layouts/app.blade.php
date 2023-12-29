@@ -122,10 +122,10 @@
 
                             @if(Auth::user()->role == 'admin') <!-- untuk admin mulai dari sini -->
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.dapil.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800  hover:border-pink-500">
+                                <a href="{{ route('admin.kabupaten.index') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dapil</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kabupaten</span>
                                 </a>
                             </li>
                             <li class="mr-3 flex-1">
@@ -136,10 +136,10 @@
                                 </a>
                             </li>
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.kelurahan.index') }}"
+                                <a href="{{ route('admin.desa.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kelurahan</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Desa/Gampong</span>
                                 </a>
                             </li>
 
@@ -150,39 +150,26 @@
                                         class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Tps</span>
                                 </a>
                             </li>
+
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.partai.index') }}"
+                                <a href="{{ route('admin.paslon.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Partai</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Paslon</span>
                                 </a>
                             </li>
-                            <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.caleg.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Caleg</span>
-                                </a>
                                 @endif <!-- sampe sini  -->
 
                                 @if(Auth::user()->role == 'saksi') <!-- untuk saksi mulai dari sini -->
                             </li>
                             <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.rekap_suara_partai.index') }}"
+                                <a href="{{ route('admin.rekap_suara.index') }}"
                                     class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                                     <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara
-                                        Partai</span>
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Rekap Suara</span>
                                 </a>
                             </li>
-                            <li class="mr-3 flex-1">
-                                <a href="{{ route('admin.rekap_suara_caleg.index') }}"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                    <i class="fa fa-address-card pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Suara
-                                        Caleg</span>
-                                </a>
-                            </li>
+                            
                             @endif <!-- sampe sini  -->
 
                             <li class="mr-3 flex-1">
