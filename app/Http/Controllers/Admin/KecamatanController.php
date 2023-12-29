@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dapil;
+use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,9 @@ class KecamatanController extends Controller
     // Menampilkan form untuk membuat kecamatan baru
     public function create()
     {
-        $dapils = Dapil::all();
+        $kabupatens = Kabupaten::all();
 
-        return view('admin.kecamatan.create', compact('dapils'));
+        return view('admin.kecamatan.create', compact('kabupatens'));
     }
 
     // Menyimpan data kecamatan baru
@@ -30,14 +31,14 @@ class KecamatanController extends Controller
     {
         $request->validate([
             'nama_kec' => 'required|:kecamatans,nama_kec',
-            'id_dapil' => 'required|exists:dapils,id_dapil',
+            'id_kab' => 'required|exists:kabupatens,id_kab',
             
         ]);
     
 
         $kecamatan = Kecamatan::create([
             'nama_kec' => $request->nama_kec,
-            'id_dapil' => $request->id_dapil,
+            'id_kab' => $request->id_kab,
         ]);
         if($kecamatan){
             return redirect()->route('admin.kecamatan.index')->with(['success'=>'data berhasil di tambah ke dalam table kategori']);
@@ -51,9 +52,9 @@ class KecamatanController extends Controller
     public function edit(Kecamatan $kecamatan)
     {
         $kecamatan = Kecamatan::findOrFail($kecamatan->id_kec);
-        $dapils = Dapil::all();
+        $kabupatens = Kabupaten::all();
 
-        return view('admin.kecamatan.edit', compact('kecamatan', 'dapils'));
+        return view('admin.kecamatan.edit', compact('kecamatan', 'kabupatens'));
 
     }
 
@@ -62,7 +63,7 @@ class KecamatanController extends Controller
     {
         $request->validate([
             'nama_kec' => 'required|:kecamatans,nama_kec',
-            'id_dapil' => 'required|exists:dapils,id_dapil',
+            'id_kab' => 'required|exists:kabupatens,id_kab',
         ]);
     
         $kecamatan = Kecamatan::findOrFail($kecamatan->id_kec);
@@ -70,7 +71,7 @@ class KecamatanController extends Controller
         // Update data kecamatan
         $kecamatan->update([
             'nama_kec' => $request->nama_kec,
-            'id_dapil' => $request->id_dapil,
+            'id_kab' => $request->id_kab,
         ]);
 
         // Redirect ke halaman index dengan pesan sukses

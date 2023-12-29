@@ -12,15 +12,15 @@ class Kecamatan extends Model
     protected $primaryKey='id_kec';
     protected $fillable=[
         'nama_kec',
-        'id_dapil',
+        'id_kab',
     ];
-    public function kelurahans()
+    public function desas()
     {
-        return $this->hasMany(Kelurahan::class, 'id_kec');
+        return $this->hasMany(Desa::class, 'id_kec');
     }
 
-    public function dapils()
+    public function kabupatens()
     {
-        return $this->belongsTo(Dapil::class, 'id_dapil');
+        return $this->belongsTo(Kabupaten::class, 'id_kab');
     }
 }

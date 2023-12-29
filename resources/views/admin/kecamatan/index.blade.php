@@ -29,7 +29,7 @@
                                 <span class="text-white">NAMA KECAMATAN</span>
                             </th>
                             <th class="px-16 py-2 text-left">
-                                <span class="text-white">DAPIL</span>
+                                <span class="text-white">KABUPATEN</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-white">AKSI</span>
@@ -41,7 +41,7 @@
                         <tr class="border bg-white">
 
                             <td class="px-16 py-2">{{ $kecamatan->nama_kec }}</td>
-                            <td class="px-16 py-2">{{ $kecamatan->dapils->nama_dapil }}</td>
+                            <td class="px-16 py-2">{{ $kecamatan->kabupatens->nama_kab }}</td>
 
                             <!--action untuk tombol hapus dan edit belum ditambahkan -->
                             <td class="px-10 py-2 text-center">

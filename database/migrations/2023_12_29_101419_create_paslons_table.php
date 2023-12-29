@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tpsuaras', function (Blueprint $table) {
-            $table->id('id_tps');
-            $table->string('no_tps');
-            $table->unsignedBigInteger('id_desa');
-            $table->timestamps();
-
-            $table->foreign('id_desa')->references('id_desa')->on('desas');
+        Schema::create('paslons', function (Blueprint $table) {
+            $table->id('id_paslon');
+            $table->string('no_urut');
+            $table->string('nama_ketua');
+            $table->string('nama_wakil');
+            $table->string('foto');
+            $table->timestamps('');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tpsuaras');
+        Schema::dropIfExists('paslons');
     }
 };

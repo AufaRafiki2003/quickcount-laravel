@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('kecamatans', function (Blueprint $table) {
             $table->id('id_kec');
             $table->string('nama_kec');
-            $table->unsignedBigInteger('id_dapil');
+            $table->unsignedBigInteger('id_kab');
             $table->timestamps();
 
-            $table->foreign('id_dapil')->references('id_dapil')->on('dapils');
+            $table->foreign('id_kab')->references('id_kab')->on('kabupatens');
         });
     }
 
