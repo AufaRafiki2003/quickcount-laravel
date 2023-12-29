@@ -30,9 +30,13 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/', [SesiController::class, 'login']);
 });
 
+
+Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
+
 // Routes for authenticated users
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [SesiController::class, 'logout']); // Logout
+    
 
     // Admin routes with 'admin' prefix and middleware
     Route::middleware('userAkses:admin')->prefix('admin')->group(function () {
@@ -44,20 +48,22 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/caleg', CalegController::class, ['as'=>'admin']);
         Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
         Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
-        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
+        
     });
 
     // Saksi routes with 'saksi' prefix and middleware
     Route::middleware('userAkses:saksi')->prefix('saksi')->group(function () {
         Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
         Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
-        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
+        
     });
 
     // Home route for all authenticated users
     Route::get('/home', function () {
         return view('admin.dashboard.index');
     });
+
+
 });
 
 
