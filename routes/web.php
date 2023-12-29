@@ -4,12 +4,9 @@
 use App\Http\Controllers\Admin\DesaContoller;
 use App\Http\Controllers\Admin\KabupateContoller;
 use App\Http\Controllers\Admin\KecamatanController;
-use App\Http\Controllers\Admin\PaslonContoller;
 use App\Http\Controllers\Admin\Rekap_suaraContoller;
-use App\Http\Controllers\Admin\RscController;
 use App\Http\Controllers\Admin\SesiController;
 use App\Http\Controllers\Admin\TpsuaraController;
-use App\Http\Controllers\Admin\CalegController;
 use App\Http\Controllers\Admin\LaporanController;
 
 use Illuminate\Support\Facades\Route;
@@ -44,18 +41,12 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/kecamatan', KecamatanController::class, ['as'=>'admin']);
         Route::resource('/desa', DesaContoller::class, ['as'=>'admin']);
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
-        Route::resource('/partai', PartaiController::class, ['as'=>'admin']);
-        Route::resource('/caleg', CalegController::class, ['as'=>'admin']);
-        Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
-        Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
-        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
     });
 
     // Saksi routes with 'saksi' prefix and middleware
     Route::middleware('userAkses:saksi')->prefix('saksi')->group(function () {
-        Route::resource('/rekap_suara_caleg', RscController::class, ['as'=>'admin']);
-        Route::resource('/rekap_suara_partai', RekapsuarapartaiController::class, ['as'=>'admin']);
-        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
+        Route::resource('/rekap_suara', Rekap_suaraContoller::class, ['as'=>'admin']);
+        
     });
 
     // Home route for all authenticated users
