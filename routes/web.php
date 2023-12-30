@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\DesaContoller;
 use App\Http\Controllers\Admin\KabupateContoller;
 use App\Http\Controllers\Admin\KecamatanController;
+use App\Http\Controllers\Admin\PaslonContoller;
 use App\Http\Controllers\Admin\Rekap_suaraContoller;
 use App\Http\Controllers\Admin\SesiController;
 use App\Http\Controllers\Admin\TpsuaraController;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/kecamatan', KecamatanController::class, ['as'=>'admin']);
         Route::resource('/desa', DesaContoller::class, ['as'=>'admin']);
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
+        Route::resource('/paslon', PaslonContoller::class, ['as'=>'admin']);
     });
 
     // Saksi routes with 'saksi' prefix and middleware
