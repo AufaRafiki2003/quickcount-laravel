@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => 'Dashboard - Admin'])
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
-    <div class="container mx-auto px-6 py-8">
+    <div class="container mx-auto px-9 py-6">
         <div class="mt-4">
             <div class="flex flex-wrap -mx-6">
                 <div class="w-full px-6 sm:w-1/2 xl:w-1/3">

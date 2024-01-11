@@ -1,15 +1,51 @@
-@extends('layouts.app', ['title' => 'LAPORAN - Admin'])
-
+@extends('layouts.app', ['title' => 'Laporan - Admin'])
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-300">
-    <div class="container mx-auto">
-        <div class="flex items-center">
-
-            <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-
-                <div class="bg-gray-800 pt-3">
-                    <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-                        <h1 class="font-bold pl-2">Analytics</h1>
+    <div class="container mx-auto px-9 py-6">
+        <div class="mt-4">
+            <div class="flex flex-wrap -mx-6">
+                <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
+                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                        <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+                            <img src="{{ asset('storage/gambar/amin.jpg') }}" alt="Amin" class="w-10 h-10">
+                        </div>
+                        
+                        <div class="mx-5">
+                            <h4 class="text-2xl font-semibold text-gray-700">PASLON 1</h4>
+                            <div class="text-gray-500">
+                                @foreach($rekap_suaras1 as $Rekap_suara)
+                                    <h1 class="text-2xl font-semibold" value="{{ $Rekap_suara->id_paslon }}">{{ $Rekap_suara->jumlah }} Suara</h1> 
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
+                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                        <div class="p-3 rounded-full bg-green-600 bg-opacity-75">
+                            <img src="{{ asset('storage/gambar/gemoy.jpg') }}" alt="Gemoy" class="w-10 h-10">
+                        </div>
+                        <div class="mx-5">
+                            <h4 class="text-2xl font-semibold text-gray-700">PASLON 2</h4>
+                            <div class="text-gray-500">
+                            @foreach($rekap_suaras2 as $Rekap_suara)
+                                <h1 class="text-2xl font-semibold" value="{{ $Rekap_suara->id_paslon }}">{{ $Rekap_suara->jumlah }} Suara</h1> 
+                            @endforeach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
+                    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                        <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
+                            <img src="{{ asset('storage/gambar/banteng.jpg') }}" alt="Banteng" class="w-10 h-10">
+                        </div>
+                        <div class="mx-5">
+                            <h4 class="text-2xl font-semibold text-gray-700">PASLON 2</h4>
+                            <div class="text-gray-500">
+                            @foreach($rekap_suaras3 as $Rekap_suara)
+                                <h1 class="text-2xl font-semibold" value="{{ $Rekap_suara->id_paslon }}">{{ $Rekap_suara->jumlah }} Suara</h1> 
+                            @endforeach</div>
+                        </div>
                     </div>
                 </div>
 
@@ -17,23 +53,35 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <!-- Select Menus -->
                         <div class="w-full p-2">
-                            <select id="dapilSelect" class="w-full p-2 border border-gray-400 rounded-md">
-                                <option value="">Pilih Dapil</option>
-                                @foreach($dapils as $dapil)
-                                    <option value="{{ $dapil->id_dapil }}">{{ $dapil->nama_dapil }}</option>
+                            <select id="kabupatenSelect" class="w-full p-2 border border-gray-400 rounded-md">
+                                <option value="">Pilih Kabupaten</option>
+                                @foreach($kabupatens as $Kabupaten)
+                                    <option value="{{ $Kabupaten->id_kab }}">{{ $Kabupaten->nama_kab }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="w-full p-2">
-                            <select id="kecamatanSelect" class="w-full p-2 border border-gray-400 rounded-md" disabled>
+                            <select id="kecamatanSelect" class="w-full p-2 border border-gray-400 rounded-md">
                                 <option value="">Pilih Kecamatan</option>
+                                @foreach($kecamatans as $Kecamatan)
+                                    <option value="{{ $Kecamatan->id_kec }}">{{ $Kecamatan->nama_kec }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="w-full p-2">
-                            <select id="kelurahanSelect" class="w-full p-2 border border-gray-400 rounded-md" disabled>
-                                <option value="">Pilih Kelurahan</option>
+                            <select id="desaSelect" class="w-full p-2 border border-gray-400 rounded-md">
+                                <option value="">Pilih Desa</option>
+                                @foreach($desas as $Desa)
+                                    <option value="{{ $Desa->id_desa }}">{{ $Desa->nama_desa }}</option>
+                                @endforeach
                             </select>
                         </div>
+                        
+                        <div class="w-full p-2">
+                            <button onclick="cariData()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Cari
+                            </button>
+                        </div>                       
                         <!-- End Select Menus -->
 
                         <!-- Chart container with horizontal scroll -->
@@ -41,23 +89,23 @@
                             <canvas id="candidateChart" class="chartjs" style="width: 100%; height: 500px;"></canvas>
                         </div>
                     </div>
-
+                    
                     <!-- Include Chart.js library -->
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                     <script>
-                        const dapilSelect = document.getElementById('dapilSelect');
+                        const kabupatenSelect = document.getElementById('kabupatenSelect');
                         const kecamatanSelect = document.getElementById('kecamatanSelect');
-                        const kelurahanSelect = document.getElementById('kelurahanSelect');
+                        const desaSelect = document.getElementById('desaSelect');
                         // Data kecamatan yang sudah ditarik sebelumnya dari controller
                         const kecamatansData = {!! $kecamatans !!}; // Pastikan format data sudah sesuai
-                        const kelurahansData = {!! $kelurahans !!}; // Pastikan format data sudah sesuai
+                        const desasData = {!! $desas !!}; // Pastikan format data sudah sesuai
                         console.log(kecamatansData);
                         
-                        // Event listener untuk perubahan pada dropdown dapil
-                        dapilSelect.addEventListener('change', function() {
-                            const selectedDapil = this.value;
-                            console.log(selectedDapil);
+                        // Event listener untuk perubahan pada dropdown kabupaten
+                        kabupatenSelect.addEventListener('change', function() {
+                            const selectedKabupaten = this.value;
+                            console.log(selectedKabupaten);
 
                             // Disable kecamatan select untuk sementara
                             kecamatanSelect.disabled = false;
@@ -65,11 +113,11 @@
                             // Bersihkan opsi sebelumnya pada dropdown kecamatan
                             kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
 
-                            // Jika dapil dipilih
-                            if (selectedDapil) {
-                                // Filter data kecamatan berdasarkan id_dapil yang dipilih
-                                console.log(selectedDapil);
-                                const filteredKecamatans = kecamatansData.filter(kecamatan => kecamatan.id_dapil == selectedDapil);
+                            // Jika Kabupaten dipilih
+                            if (selectedKabupaten) {
+                                // Filter data kecamatan berdasarkan id_Kabupaten yang dipilih
+                                console.log(selectedKabupaten);
+                                const filteredKecamatans = kecamatansData.filter(kecamatan => kecamatan.id_kabupaten == selectedKabupaten);
 
                                 // Tampilkan kecamatan yang sudah difilter
                                 filteredKecamatans.forEach(kecamatan => {
@@ -89,97 +137,34 @@
                             console.log(selectedKecamatan);
 
                             // Disable kecamatan select untuk sementara
-                            kelurahanSelect.disabled = false;
+                            desaSelect.disabled = false;
 
                             // Bersihkan opsi sebelumnya pada dropdown kecamatan
-                            kelurahanSelect.innerHTML = '<option value="">Pilih Kelurahan</option>';
+                            desaSelect.innerHTML = '<option value="">Pilih desa</option>';
 
-                            // Jika dapil dipilih
+                            // Jika kabupaten dipilih
                             if (selectedKecamatan) {
-                                // Filter data kecamatan berdasarkan id_dapil yang dipilih
+                                // Filter data kecamatan berdasarkan id_kabupaten yang dipilih
                                 console.log(selectedKecamatan);
-                                const filteredKelurahans = kelurahansData.filter(kelurahan => kelurahan.id_kec == selectedKecamatan);
+                                const filteredDesa = desasData.filter(desa => desa.id_kec == selectedKecamatan);
 
                                 // Tampilkan kecamatan yang sudah difilter
-                                filteredKelurahans.forEach(kelurahan => {
+                                filteredDesas.forEach(desa => {
                                     const option = document.createElement('option');
-                                    option.value = kelurahan.id_kel;
-                                    option.textContent = kelurahan.nama_kel;
-                                    kelurahanSelect.appendChild(option);
+                                    option.value = desa.id_kel;
+                                    option.textContent = desa.nama_desa;
+                                    desaSelect.appendChild(option);
                                 });
 
                                 // Aktifkan kembali dropdown kecamatan
-                                kelurahanSelect.disabled = false;
+                                desaSelect.disabled = false;
                             }
                         });
                     </script>
                     <!-- Script to generate the chart -->
-                    <script>
-                        const partaisData = {!! $partais !!};
-                        const calegsData = {!! $calegs !!};
-                        const suaraPartaiData = {!! $rekap_suara_partais !!};
-                        const suaraCalegData = {!! $rekap_suara_calegs !!};
-                        const filteredPartais = partaisData.map(partai => partai.nama_partai);
-                        const filteredIdPartais = partaisData.map(partai => partai.id_partai);
-
-                        const jumlahSuaraPerPartai = [];
-
-                        // Lakukan loop untuk setiap id_partai yang telah difilter
-                        filteredIdPartais.forEach(idPartai => {
-                            // Filter data rekap_suara_partai berdasarkan id_partai yang sedang dilooping
-                            const suaraPartai = suaraPartaiData.filter(item => item.id_partai === idPartai);
-                            const calegPartai = calegsData.filter(item => item.id_partai === idPartai);
-                            const suaraCalegPartai = suaraCalegData.filter(item => calegPartai.map(caleg => caleg.id_caleg).includes(item.id_caleg));
-
-
-                            console.log('suaraPartai')
-                            console.log(suaraCalegPartai)
-
-                            const totalSuaraCalegPartai = suaraCalegPartai.reduce((total, item) => total + item.jumlah, 0);
-                            // Hitung jumlah suara untuk id_partai tersebut
-                            const totalSuaraPartai = suaraPartai.reduce((total, item) => total + item.jumlah, 0);
-
-                            // Simpan jumlah suara per partai ke dalam objek
-                            jumlahSuaraPerPartai.push(totalSuaraPartai+totalSuaraCalegPartai);
-                        });
-                        console.log(jumlahSuaraPerPartai);
-                        // Sample data for candidates
-                        const candidateData = {
-                            labels: filteredPartais,
-                            datasets: [{
-                                label: "Votes",
-                                data: jumlahSuaraPerPartai,
-                                backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)"],
-                                borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)"],
-                                borderWidth: 1
-                            }]
-                        };
-
-                        // Get the chart canvas element
-                        const candidateChartCanvas = document.getElementById('candidateChart');
-
-                        // Create the chart
-                        const candidateChart = new Chart(candidateChartCanvas, {
-                            type: 'bar',
-                            data: candidateData,
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false, // Disable aspect ratio maintenance
-                                scales: {
-                                    x: {
-                                        beginAtZero: true
-                                    },
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    </script>
                 </div>
             </div>
         </div>
     </div>
 </main>
-
 @endsection

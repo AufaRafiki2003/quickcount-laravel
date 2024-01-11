@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/desa', DesaContoller::class, ['as'=>'admin']);
         Route::resource('/tpsuara', TpsuaraController::class, ['as'=>'admin']);
         Route::resource('/paslon', PaslonContoller::class, ['as'=>'admin']);
+        Route::resource('/laporan', LaporanController::class, ['as'=>'admin']);
     });
 
     // Saksi routes with 'saksi' prefix and middleware
